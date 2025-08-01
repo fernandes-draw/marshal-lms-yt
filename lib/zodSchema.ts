@@ -10,8 +10,12 @@ export const courseCategories = [
   "It & Software",
   "Office Productivity",
   "Personal Development",
-  "Design"
-];
+  "Design",
+  "Marketing",
+  "Health & Fitness",
+  "Music",
+  "Teaching & Academics",
+] as const;
 
 export const courseSchema = z.object({
   title: z
@@ -28,7 +32,7 @@ export const courseSchema = z.object({
     .min(1, { error: "Duration must be at least 1 hour" })
     .max(500, { error: "Duration must be at most 500 hours" }),
   level: z.enum(courseLevels, { error: "Level is required" }),
-  category: z.string(),
+  category: z.enum(courseCategories, { error: "Category is required." }),
   smallDescription: z
     .string()
     .min(3, { error: "Small description must be at least 3 characters long" })
